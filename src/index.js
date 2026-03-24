@@ -38,7 +38,7 @@ let currentPiece = null;
 let currentX = 0;
 let currentY = 0;
 let score = 0;
-let gameOver = false;
+let highScore = 0;
 let isPaused = false;
 let dropCounter = 0;
 let dropInterval = 1000;
@@ -310,6 +310,16 @@ function updateScore() {
 }
 
 // Handle keyboard input
+function updateScore() {
+  document.getElementById("score").textContent = score;
+
+  // Update high score if current score exceeds it
+  if (score > highScore) {
+    highScore = score;
+    document.getElementById("high-score").textContent = highScore;
+    localStorage.setItem("stackOverflownHighScore", highScore);
+  }
+}
 function handleKeyPress(e) {
   if (gameOver) return;
 
